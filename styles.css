@@ -172,7 +172,7 @@ h1 {
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
+    padding: 1rem;
     z-index: 3;
     display: flex;
     justify-content: center;
@@ -182,8 +182,12 @@ h1 {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 1rem;
 }
 
 .nav-link {
@@ -306,18 +310,94 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2.5rem;
+    margin-top: -80px;
 }
 
 .subtitle {
     font-size: 1.5rem;
     color: var(--text-color);
     opacity: 0.9;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .cta-buttons {
     display: flex;
     gap: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
+}
+
+/* Add styles for settings icon and overlay */
+.settings-icon {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 4;
+    cursor: pointer;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+}
+
+.settings-icon img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);  /* Makes the icon white */
+}
+
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 5;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-overlay.active {
+    display: flex;
+}
+
+.settings-panel {
+    background: var(--gradient-start);
+    border: 2px solid var(--accent-color);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-settings {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.close-settings:hover {
+    transform: scale(1.1);
 }
