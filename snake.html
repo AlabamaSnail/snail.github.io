@@ -16,6 +16,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-width: 95%;
+            width: 800px;
         }
         
         #gameCanvas {
@@ -95,18 +97,25 @@
             }
 
             .game-container {
-                margin: 10px;
                 padding: 10px;
+                margin: 10px;
+            }
+
+            .controls {
+                width: 100%;
+                padding: 0 10px;
             }
         }
 
         @media (max-height: 800px) {
             .content {
                 padding-top: 1rem;
+                justify-content: flex-start;
             }
             
             h1 {
                 margin-bottom: 1rem;
+                font-size: 2.5rem;
             }
             
             .game-container {
@@ -118,7 +127,7 @@
 <body>
     <canvas id="particleCanvas"></canvas>
     <div class="content">
-        <h1>SUPER SNAKE</h1>
+        <h1>Snake</h1>
         <div class="game-container">
             <canvas id="gameCanvas"></canvas>
             <div id="score">Score: 0</div>
