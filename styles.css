@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #000000, #333333);
+    color: white;
+    height: 100vh;
+}
+
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    letter-spacing: 3px;
+}
+
+.button {
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.games-grid {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    width: 90%;
+    padding: 0 2rem;
+}
+
+.game-card {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.game-image-container {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.game-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.game-card p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.coming-soon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .button {
+        padding: 0.8rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(1, 1fr);
+        width: 95%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .button {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+    }
+}

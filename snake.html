@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake - Austin Reynolds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .game-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #gameCanvas {
+            background: #000;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        input[type="range"] {
+            width: 80%;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #startButton {
+            grid-column: span 2;
+            padding: 10px 20px;
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        #startButton:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        #score {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: bold;
+        }
+
+        .value-display {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            #startButton {
+                grid-column: span 1;
+            }
+
+            .game-container {
+                margin: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="content">
+        <h1>Snake</h1>
+        <div class="game-container">
+            <canvas id="gameCanvas"></canvas>
+            <div id="score">Score: 0</div>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="speed">Speed</label>
+                    <input type="range" id="speed" min="1" max="20" value="10">
+                    <span id="speedValue" class="value-display">10</span>
+                </div>
+                <div class="control-group">
+                    <label for="boardSize">Board Size</label>
+                    <input type="range" id="boardSize" min="10" max="30" value="20">
+                    <span id="boardSizeValue" class="value-display">20</span>
+                </div>
+                <div class="control-group">
+                    <label for="apples">Number of Apples</label>
+                    <input type="range" id="apples" min="1" max="5" value="1">
+                    <span id="applesValue" class="value-display">1</span>
+                </div>
+                <button id="startButton">Start Game</button>
+            </div>
+        </div>
+        <a href="games.html" class="button">Back to Games</a>
+    </div>
+    <script src="particles.js"></script>
+    <script src="snake.js"></script>
+</body>
+</html>

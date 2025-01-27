@@ -1,0 +1,67 @@
+.game-content {
+    padding: 2rem;
+}
+
+.difficulty-selector {
+    margin-bottom: 2rem;
+}
+
+.diff-btn {
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.diff-btn.selected {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 2rem auto;
+    max-width: 400px;
+    width: 100%;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cell.x::before {
+    content: "X";
+}
+
+.cell.o::before {
+    content: "O";
+}
+
+.back-btn {
+    margin-top: 1rem;
+}
+
+#reset-btn {
+    margin-bottom: 1rem;
+}
