@@ -1,3 +1,12 @@
+/* Add at the top of styles.css */
+:root {
+    --gradient-start: #1a1a1a;
+    --gradient-end: #404040;
+    --text-color: #ffffff;
+    --accent-color: rgba(255, 255, 255, 0.8);
+    --hover-color: rgba(255, 255, 255, 0.2);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +15,8 @@
 
 body {
     font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #000000, #333333);
-    color: white;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--text-color);
     min-height: 100vh;
     position: relative;
 }
@@ -29,7 +38,7 @@ body {
     align-items: center;
     min-height: 100vh;
     text-align: center;
-    padding: 2rem 0;
+    padding: 6rem 0;
     width: 100%;
     overflow-y: auto;
 }
@@ -152,4 +161,136 @@ h1 {
         padding: 0.6rem 1.5rem;
         font-size: 1rem;
     }
+}
+
+/* Add these new styles for the navigation */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Add responsive styles for nav */
+@media (max-width: 600px) {
+    .nav-bar {
+        padding: 0.8rem 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Add new styles for settings page */
+.settings-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--accent-color);
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.setting-group {
+    margin-bottom: 2rem;
+}
+
+.setting-group h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.theme-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.theme-btn {
+    padding: 0.8rem 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-color);
+    color: var(--text-color);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.theme-btn.active {
+    background: var(--hover-color);
+    transform: scale(1.05);
+}
+
+.custom-theme-controls {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.color-picker {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.color-picker label {
+    font-size: 1.1rem;
+}
+
+.color-picker input[type="color"] {
+    width: 100px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

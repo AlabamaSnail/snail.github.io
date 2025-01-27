@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Austin Reynolds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="games.html" class="nav-link">Games</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="settings.html" class="nav-link active">Settings</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Settings</h1>
+        <div class="settings-container">
+            <div class="setting-group">
+                <h2>Theme</h2>
+                <div class="theme-options">
+                    <button class="theme-btn" data-theme="default">Default</button>
+                    <button class="theme-btn" data-theme="blue">Blue</button>
+                    <button class="theme-btn" data-theme="purple">Purple</button>
+                    <button class="theme-btn" data-theme="green">Green</button>
+                    <button class="theme-btn custom-theme">Custom</button>
+                </div>
+                <div class="custom-theme-controls" style="display: none;">
+                    <div class="color-picker">
+                        <label for="primary-color">Primary Color:</label>
+                        <input type="color" id="primary-color" value="#1a1a1a">
+                    </div>
+                    <div class="color-picker">
+                        <label for="secondary-color">Secondary Color:</label>
+                        <input type="color" id="secondary-color" value="#404040">
+                    </div>
+                    <button class="button apply-custom">Apply Custom Theme</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="particles.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html> 

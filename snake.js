@@ -82,6 +82,7 @@ function gameOver() {
     clearInterval(gameInterval);
     gameStarted = false;
     startButton.textContent = 'Start Game';
+    document.body.style.overflow = 'auto';
     alert(`Game Over! Score: ${score}`);
 }
 
@@ -206,15 +207,24 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Add event listener to prevent scrolling with arrow keys during gameplay
+window.addEventListener('keydown', (e) => {
+    if (gameStarted && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+        e.preventDefault();
+    }
+});
+
 startButton.addEventListener('click', () => {
     if (gameStarted) {
         clearInterval(gameInterval);
         gameStarted = false;
         startButton.textContent = 'Start Game';
+        document.body.style.overflow = 'auto';
     } else {
         initGame();
         gameStarted = true;
         startButton.textContent = 'Stop Game';
+        document.body.style.overflow = 'hidden';
         const speed = parseInt(speedSlider.value);
         gameInterval = setInterval(() => {
             update();
