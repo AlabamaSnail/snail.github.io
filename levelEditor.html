@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Editor - Pixel Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="levelEditor.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div id="adminControls" style="display: none;">
+        <!-- Admin-only controls -->
+    </div>
+    
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+    </script>
+    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="adminAuth.js"></script>
+    <script src="gameElements.js"></script>
+    <script src="levelEditor.js"></script>
+    <script src="levelManager.js"></script>
+</body>
+</html> 

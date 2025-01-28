@@ -1,3 +1,5 @@
+import AdminAuth from './adminAuth.js';
+
 const themes = {
     default: {
         gradientStart: '#000000',
@@ -86,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         themeButtons.forEach(b => b.classList.remove('active'));
         document.querySelector('.custom-theme').classList.add('active');
     });
+
+    new AdminPanel();
 });
 
 function applyTheme(gradientStart, gradientEnd) {
@@ -130,4 +134,97 @@ document.getElementById('submitBug').addEventListener('click', function() {
     setTimeout(() => {
         message.style.display = 'none';
     }, 3000);
-}); 
+});
+
+// Add to existing theme.js
+class AdminPanel {
+    constructor() {
+        this.adminAuth = new AdminAuth();
+        this.setupAdminPanel();
+    }
+
+    setupAdminPanel() {
+        const adminSection = document.createElement('div');
+        adminSection.className = 'setting-group admin-section';
+        adminSection.innerHTML = `
+            <h3>Admin Panel</h3>
+            <div class="admin-login-form">
+                <input type="email" id="adminEmail" placeholder="Email" />
+                <input type="password" id="adminPassword" placeholder="Password" />
+                <button class="button login-btn">Login</button>
+                <div class="login-message"></div>
+            </div>
+            <div class="admin-controls" style="display: none;">
+                <button class="button logout-btn">Logout</button>
+                <div class="admin-actions">
+                    <button class="button edit-levels">Edit Levels</button>
+                    <button class="button manage-coins">Manage Coins</button>
+                    <button class="button view-stats">View Stats</button>
+                </div>
+            </div>
+        `;
+
+        const settingsPanel = document.querySelector('.settings-panel');
+        if (settingsPanel) {
+            settingsPanel.appendChild(adminSection);
+            this.bindEvents();
+        }
+    }
+
+    async bindEvents() {
+        const loginBtn = document.querySelector('.login-btn');
+        const logoutBtn = document.querySelector('.logout-btn');
+        const messageDiv = document.querySelector('.login-message');
+        
+        loginBtn?.addEventListener('click', async () => {
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            try {
+                const success = await this.adminAuth.login(email, password);
+                if (success) {
+                    this.showAdminControls();
+                    messageDiv.textContent = 'Login successful!';
+                    messageDiv.style.color = '#4CAF50';
+                } else {
+                    messageDiv.textContent = 'Invalid credentials';
+                    messageDiv.style.color = '#f44336';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'Login failed: ' + error.message;
+                messageDiv.style.color = '#f44336';
+            }
+        });
+
+        logoutBtn?.addEventListener('click', async () => {
+            await this.adminAuth.logout();
+            this.hideAdminControls();
+            messageDiv.textContent = 'Logged out successfully';
+            messageDiv.style.color = '#4CAF50';
+        });
+
+        // Check admin status on page load
+        this.checkAdminStatus();
+    }
+
+    async checkAdminStatus() {
+        const isAdmin = await this.adminAuth.isAdmin();
+        if (isAdmin) {
+            this.showAdminControls();
+        } else {
+            this.hideAdminControls();
+        }
+    }
+
+    showAdminControls() {
+        document.querySelector('.admin-login-form').style.display = 'none';
+        document.querySelector('.admin-controls').style.display = 'block';
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+    }
+
+    hideAdminControls() {
+        document.querySelector('.admin-login-form').style.display = 'block';
+        document.querySelector('.admin-controls').style.display = 'none';
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+    }
+} 

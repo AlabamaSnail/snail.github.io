@@ -338,24 +338,16 @@ h1 {
 /* Add styles for settings icon and overlay */
 .settings-icon {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 4;
-    cursor: pointer;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transition: all 0.3s ease;
+    top: 20px;
+    right: 20px;
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
 .settings-icon:hover {
-    background: rgba(255, 255, 255, 0.2);
     transform: rotate(45deg);
 }
 
@@ -973,17 +965,18 @@ h1 {
 .coin-display {
     position: fixed;
     top: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 0.5rem 1rem;
+    right: 80px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
     border-radius: 20px;
     color: #FFD700;
     font-size: 1.2rem;
+    z-index: 1000;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    z-index: 1000;
-    border: 2px solid #FFD700;
+    gap: 8px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .coin-popup, .result-popup {
@@ -1126,4 +1119,31 @@ h1 {
 
 .result-popup-content .coin-reward i {
     animation: coinSpin 1s infinite linear;
+}
+
+.admin-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.admin-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-login-form input {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: white;
+}
+
+.admin-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
