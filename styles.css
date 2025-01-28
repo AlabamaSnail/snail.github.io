@@ -36,10 +36,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
     text-align: center;
-    padding: 0;
+    padding: 80px 0 2rem 0;
     width: 100%;
     overflow-y: auto;
 }
@@ -150,6 +149,10 @@ h1 {
         grid-template-columns: repeat(1, 1fr);
         width: 95%;
         max-width: 400px;
+    }
+
+    .content {
+        padding-top: 100px;
     }
 }
 
@@ -307,11 +310,12 @@ h1 {
 
 /* Add styles for the home page content */
 .home-content {
+    justify-content: center;
+    min-height: calc(100vh - 80px);  /* Account for padding */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
-    margin-top: -80px;
+    margin-top: -80px;  /* Offset the padding */
 }
 
 .subtitle {
@@ -369,7 +373,9 @@ h1 {
     z-index: 5;
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 2rem 0;
 }
 
 .settings-overlay.active {
@@ -384,6 +390,7 @@ h1 {
     max-width: 500px;
     width: 90%;
     position: relative;
+    margin: auto;
 }
 
 .close-settings {
@@ -409,6 +416,9 @@ h1 {
     width: 90%;
     margin: 0 auto;
     padding: 2rem;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
 }
 
 .about-content {
@@ -416,6 +426,7 @@ h1 {
     grid-template-columns: 300px 1fr;
     gap: 2rem;
     text-align: left;
+    margin-top: 1rem;
 }
 
 .profile-section {
@@ -429,7 +440,7 @@ h1 {
     margin-bottom: 1rem;
     border: 3px solid var(--accent-color);
     object-fit: cover;
-    object-position: center;
+    object-position: right center;
     transition: opacity 0.3s ease;
 }
 
@@ -498,4 +509,71 @@ h1 {
     .about-content {
         grid-template-columns: 1fr;
     }
+
+    .profile-section {
+        margin-bottom: 2rem;
+    }
+
+    .settings-overlay {
+        padding: 1rem;
+    }
+
+    .content {
+        padding-top: 100px;
+    }
+
+    .home-content {
+        margin-top: -100px;  /* Adjust for mobile padding */
+    }
+}
+
+.bio-section {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    margin-top: 1rem;
+}
+
+.bio-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.bio-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.skill-category {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.skill-category h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.skill-category li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
 }

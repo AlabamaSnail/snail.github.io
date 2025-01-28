@@ -3,11 +3,16 @@ function loadProfilePicture() {
     if (profileImage) {
         profileImage.src = 'Pictures/PicturesOfMe/AboutMe.jpg';
         
-        // Add error handling just in case
         profileImage.onerror = function() {
             console.log('Failed to load profile picture');
             console.log('Attempted path:', profileImage.src);
+            console.log('Current page location:', window.location.href);
             profileImage.alt = "Profile picture unavailable";
+        };
+
+        // Add onload handler to confirm when image loads successfully
+        profileImage.onload = function() {
+            console.log('Image loaded successfully');
         };
     }
 }

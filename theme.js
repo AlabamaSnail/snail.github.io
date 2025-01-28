@@ -1,19 +1,19 @@
 const themes = {
     default: {
-        gradientStart: '#1a1a1a',
-        gradientEnd: '#404040'
+        gradientStart: '#000000',
+        gradientEnd: '#303030'
     },
     blue: {
-        gradientStart: '#1a1a2a',
-        gradientEnd: '#2a4060'
+        gradientStart: '#0a1a3a',
+        gradientEnd: '#1e90ff'
     },
     purple: {
-        gradientStart: '#1a1a24',
-        gradientEnd: '#403850'
+        gradientStart: '#2a0a3a',
+        gradientEnd: '#9932cc'
     },
     green: {
-        gradientStart: '#1a241a',
-        gradientEnd: '#2a4030'
+        gradientStart: '#0a3a1a',
+        gradientEnd: '#32cd32'
     }
 };
 
