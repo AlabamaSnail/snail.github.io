@@ -6,6 +6,7 @@
     <title>About - Austin Reynolds</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <canvas id="particleCanvas"></canvas>
@@ -62,6 +63,27 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="contact-section">
+                        <h2>Contact & Social Media</h2>
+                        <div class="social-links">
+                            <a href="mailto:Austinjr2006@gmail.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+                            <a href="https://github.com/alabamasnail" class="social-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://instagram.com/alabamasnail" class="social-link" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" class="social-link" onclick="copyDiscord()">
+                                <i class="fab fa-discord"></i>
+                                <span id="discord-text">Discord</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,5 +96,19 @@
     <script src="particles.js"></script>
     <script src="theme.js"></script>
     <script src="profilePictures.js"></script>
+    <script>
+    function copyDiscord() {
+        const discordTag = "alabamasnail"; // Replace with your Discord tag
+        navigator.clipboard.writeText(discordTag);
+        
+        const discordText = document.getElementById('discord-text');
+        const originalText = discordText.textContent;
+        discordText.textContent = 'Copied!';
+        
+        setTimeout(() => {
+            discordText.textContent = originalText;
+        }, 2000);
+    }
+    </script>
 </body>
 </html> 
