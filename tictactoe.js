@@ -9,6 +9,9 @@ class TicTacToe {
         this.diffButtons = document.querySelectorAll('.diff-btn');
         this.resetButton = document.getElementById('reset-btn');
 
+        this.gameHistory = JSON.parse(localStorage.getItem('tictactoeHistory')) || [];
+        this.updateLeaderboard();
+
         this.initializeGame();
     }
 
@@ -29,6 +32,27 @@ class TicTacToe {
         this.resetButton.addEventListener('click', () => this.resetGame());
     }
 
+    endGame(result) {
+        this.gameActive = false;
+        
+        // Add game to history
+        this.addGameToHistory(result, this.difficulty);
+        
+        // Show result
+        setTimeout(() => {
+            if (result === 'Win') {
+                alert('You win!');
+            } else if (result === 'Loss') {
+                alert('AI wins!');
+            } else {
+                alert("It's a draw!");
+            }
+            
+            // Auto-reset after a short delay
+            setTimeout(() => this.resetGame(), 500);
+        }, 100);
+    }
+
     makeMove(cell) {
         const index = cell.dataset.index;
         if (this.board[index] === '' && this.gameActive) {
@@ -36,25 +60,23 @@ class TicTacToe {
             cell.classList.add(this.currentPlayer.toLowerCase());
             
             if (this.checkWin()) {
-                this.gameActive = false;
-                alert(`Player ${this.currentPlayer} wins!`);
+                this.endGame('Win');
                 return;
             }
-
+            
             if (this.checkDraw()) {
-                this.gameActive = false;
-                alert("It's a draw!");
+                this.endGame('Draw');
                 return;
             }
-
+            
             this.currentPlayer = 'O';
-            setTimeout(() => this.makeAIMove(), 500);
+            if (this.gameActive) {
+                setTimeout(() => this.makeAIMove(), 500);
+            }
         }
     }
 
     makeAIMove() {
-        if (!this.gameActive) return;
-
         let move;
         switch(this.difficulty) {
             case 'easy':
@@ -66,31 +88,35 @@ class TicTacToe {
             case 'hard':
                 move = this.getBestMove();
                 break;
+            default:
+                move = this.getRandomMove(); // Default to easy
         }
 
-        this.board[move] = 'O';
-        this.cells[move].classList.add('o');
-
-        if (this.checkWin()) {
-            this.gameActive = false;
-            alert('AI wins!');
-            return;
+        if (move !== null && this.gameActive) {
+            this.board[move] = 'O';
+            document.querySelector(`[data-index="${move}"]`).classList.add('o');
+            
+            if (this.checkWin()) {
+                this.endGame('Loss');
+                return;
+            }
+            
+            if (this.checkDraw()) {
+                this.endGame('Draw');
+                return;
+            }
+            
+            this.currentPlayer = 'X';
         }
-
-        if (this.checkDraw()) {
-            this.gameActive = false;
-            alert("It's a draw!");
-            return;
-        }
-
-        this.currentPlayer = 'X';
     }
 
     getRandomMove() {
-        const emptyCells = this.board
+        const availableMoves = this.board
             .map((cell, index) => cell === '' ? index : null)
             .filter(cell => cell !== null);
-        return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        
+        if (availableMoves.length === 0) return null;
+        return availableMoves[Math.floor(Math.random() * availableMoves.length)];
     }
 
     getBestMove() {
@@ -162,8 +188,41 @@ class TicTacToe {
         this.board = Array(9).fill('');
         this.currentPlayer = 'X';
         this.gameActive = true;
-        this.cells.forEach(cell => {
-            cell.classList.remove('x', 'o');
+        
+        // Clear the board
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.className = 'cell';
+        });
+    }
+
+    addGameToHistory(result, difficulty) {
+        const game = {
+            result: result,
+            difficulty: difficulty,
+            date: new Date().toLocaleString()
+        };
+        
+        this.gameHistory.unshift(game); // Add to start of array
+        if (this.gameHistory.length > 10) {
+            this.gameHistory.pop(); // Keep only last 10 games
+        }
+        
+        localStorage.setItem('tictactoeHistory', JSON.stringify(this.gameHistory));
+        this.updateLeaderboard();
+    }
+
+    updateLeaderboard() {
+        const leaderboardList = document.querySelector('.leaderboard-list');
+        leaderboardList.innerHTML = '';
+        
+        this.gameHistory.forEach(game => {
+            const record = document.createElement('div');
+            record.className = 'game-record';
+            record.innerHTML = `
+                <span class="difficulty">${game.difficulty}</span>
+                <span class="result ${game.result.toLowerCase()}">${game.result}</span>
+            `;
+            leaderboardList.appendChild(record);
         });
     }
 }

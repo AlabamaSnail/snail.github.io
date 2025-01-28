@@ -1,0 +1,165 @@
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.board {
+    display: grid;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px;
+    border-radius: 8px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.cell.revealed {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cell.mine {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+.cell.flagged::before {
+    content: "🚩";
+}
+
+.difficulty-selector {
+    margin-bottom: 1rem;
+}
+
+.diff-btn {
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.diff-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.diff-btn.selected {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.infinite-mode {
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(0, 255, 255, 0.2));
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.custom-settings {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.custom-settings input {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    width: 120px;
+}
+
+/* Infinite mode specific styles */
+.board.infinite {
+    cursor: grab;
+    transition: none;
+}
+
+.board.infinite:active {
+    cursor: grabbing;
+}
+
+.game-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.game-notification.show {
+    transform: translateX(0);
+}
+
+.cell .ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    transform: scale(0);
+    animation: ripple 1s ease-out;
+}
+
+.cell.highlight {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.reset-btn {
+    padding: 0.5rem 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+} 

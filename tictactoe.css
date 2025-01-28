@@ -65,3 +65,75 @@
 #reset-btn {
     margin-bottom: 1rem;
 }
+
+.game-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.leaderboard {
+    width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    height: fit-content;
+    margin-top: 0;
+    position: absolute;
+    right: 20rem;
+}
+
+.leaderboard h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.game-record {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-record .result {
+    font-weight: bold;
+}
+
+.game-record .win {
+    color: #4CAF50;
+}
+
+.game-record .loss {
+    color: #f44336;
+}
+
+.game-record .draw {
+    color: #FFC107;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .leaderboard {
+        width: 100%;
+        max-width: 400px;
+        margin-top: 2rem;
+    }
+}
