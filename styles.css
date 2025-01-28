@@ -577,3 +577,28 @@ h1 {
     left: 0;
     color: var(--accent-color);
 }
+
+.nav-container {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    color: #4CAF50;
+}
