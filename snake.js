@@ -75,8 +75,17 @@ function gameOver() {
     clearInterval(gameInterval);
     gameStarted = false;
     startButton.textContent = 'Start Game';
-    document.body.style.overflow = 'auto';
-    alert(`Game Over! Score: ${score}`);
+    
+    // Calculate coins (1 coin per 10 score)
+    const coinsEarned = Math.floor(score / 10);
+    
+    // Show game result with score and coins
+    window.coins.showGameResult(
+        'Game Over!',
+        score,
+        coinsEarned,
+        `Coins earned: 1 per 10 points`
+    );
 }
 
 class Snake {

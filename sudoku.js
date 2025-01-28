@@ -9,6 +9,7 @@ class Sudoku {
         this.timerElement = document.getElementById('timer');
         this.timerInterval = null;
         this.timeElapsed = 0;
+        this.hintsUsed = false;
 
         this.setupBoard();
         this.setupControls();
@@ -294,6 +295,7 @@ class Sudoku {
         this.currentPuzzle[row][col] = this.solution[row][col];
         this.selectedCell.classList.add('hint');
         setTimeout(() => this.selectedCell.classList.remove('hint'), 1000);
+        this.hintsUsed = true;
     }
 
     checkSolution() {
@@ -323,7 +325,24 @@ class Sudoku {
 
     gameWon() {
         clearInterval(this.timerInterval);
-        alert(`Congratulations! You solved the puzzle in ${this.formatTime(this.timeElapsed)}!`);
+        let coinsEarned = 0;
+        
+        // Only award coins if no hints were used
+        if (!this.hintsUsed) {
+            switch(this.difficulty) {
+                case 'easy': coinsEarned = 5; break;
+                case 'medium': coinsEarned = 10; break;
+                case 'hard': coinsEarned = 20; break;
+            }
+        }
+        
+        window.coins.showGameResult(
+            'Puzzle Solved!',
+            this.formatTime(this.timeElapsed),
+            coinsEarned,
+            `Difficulty: ${this.difficulty.charAt(0).toUpperCase() + this.difficulty.slice(1)}` +
+            (this.hintsUsed ? '\nNo coins awarded (hints used)' : '')
+        );
     }
 
     startTimer() {

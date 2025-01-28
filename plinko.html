@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plinko - Austin Reynolds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="plinko.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="content game-content">
+        <h1>Plinko</h1>
+        
+        <div class="plinko-machine">
+            <div class="controls">
+                <div class="bet-controls">
+                    <button id="decreaseBet" class="bet-btn">-</button>
+                    <div class="bet-display">
+                        <span>BET</span>
+                        <span id="betAmount">10</span>
+                    </div>
+                    <button id="increaseBet" class="bet-btn">+</button>
+                </div>
+                <div class="ball-controls">
+                    <button id="decreaseBalls" class="bet-btn">-</button>
+                    <div class="bet-display">
+                        <span>BALLS</span>
+                        <span id="ballCount">1</span>
+                    </div>
+                    <button id="increaseBalls" class="bet-btn">+</button>
+                </div>
+                <button id="dropButton" class="drop-button">DROP</button>
+            </div>
+
+            <canvas id="plinkoCanvas"></canvas>
+
+            <div class="multipliers">
+                <div class="multiplier">x5</div>
+                <div class="multiplier">x2.5</div>
+                <div class="multiplier">x2</div>
+                <div class="multiplier">x1</div>
+                <div class="multiplier">x0.5</div>
+                <div class="multiplier">x0</div>
+                <div class="multiplier">x0.5</div>
+                <div class="multiplier">x1</div>
+                <div class="multiplier">x2</div>
+                <div class="multiplier">x2.5</div>
+                <div class="multiplier">x5</div>
+            </div>
+        </div>
+
+        <div class="debug-controls">
+            <button id="addCoinsTest" class="debug-button">Add 100 Coins (Test)</button>
+        </div>
+
+        <a href="games.html" class="button back-btn">Back to Games</a>
+    </div>
+
+    <script src="particles.js"></script>
+    <script src="theme.js"></script>
+    <script src="coins.js"></script>
+    <script src="plinko.js"></script>
+</body>
+</html> 

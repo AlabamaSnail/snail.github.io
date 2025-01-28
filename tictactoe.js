@@ -13,6 +13,9 @@ class TicTacToe {
         this.updateLeaderboard();
 
         this.initializeGame();
+
+        // Store game instance on the board element
+        document.querySelector('.game-board').__game = this;
     }
 
     initializeGame() {
@@ -69,16 +72,23 @@ class TicTacToe {
         // Update achievements
         this.updateAchievements(result);
         
+        // Calculate coins based on difficulty and result
+        let coinsEarned = 0;
         if (result === 'Win') {
-            alert('You win!');
-        } else if (result === 'Loss') {
-            alert('AI wins!');
-        } else {
-            alert("It's a draw!");
+            switch(this.difficulty) {
+                case 'easy': coinsEarned = 1; break;
+                case 'medium': coinsEarned = 3; break;
+                case 'hard': coinsEarned = 50; break;
+            }
         }
-        
-        // Reset after a short delay
-        setTimeout(() => this.resetGame(), 500);
+
+        // Show result popup with coins
+        window.coins.showGameResult(
+            result === 'Win' ? 'Victory!' : result === 'Loss' ? 'Defeat!' : 'Draw!',
+            null,
+            coinsEarned,
+            `Difficulty: ${this.difficulty.charAt(0).toUpperCase() + this.difficulty.slice(1)}`
+        );
     }
 
     makeMove(cell) {

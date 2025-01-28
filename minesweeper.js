@@ -187,7 +187,7 @@ class Minesweeper {
 
         this.revealCell(x, y);
         if (this.checkWin()) {
-            this.gameOver(true);
+            this.gameWon();
         }
     }
 
@@ -293,7 +293,11 @@ class Minesweeper {
         });
 
         setTimeout(() => {
-            alert(won ? 'You Win! 🎉' : 'Game Over! 💥');
+            if (won) {
+                this.gameWon();
+            } else {
+                this.gameLost();
+            }
         }, 100);
     }
 
@@ -585,6 +589,34 @@ class Minesweeper {
         this.boardElement.querySelectorAll('.highlight').forEach(cell => {
             cell.classList.remove('highlight');
         });
+    }
+
+    gameWon() {
+        clearInterval(this.timerInterval);
+        let coinsEarned = 0;
+        
+        switch(this.currentDifficulty) {
+            case 'beginner': coinsEarned = 2; break;
+            case 'intermediate': coinsEarned = 5; break;
+            case 'expert': coinsEarned = 10; break;
+        }
+        
+        window.coins.showGameResult(
+            'Victory!',
+            this.timer,
+            coinsEarned,
+            `Difficulty: ${this.currentDifficulty.charAt(0).toUpperCase() + this.currentDifficulty.slice(1)}`
+        );
+    }
+
+    gameLost() {
+        clearInterval(this.timerInterval);
+        window.coins.showGameResult(
+            'Game Over!',
+            this.timer,
+            0,
+            `Difficulty: ${this.currentDifficulty.charAt(0).toUpperCase() + this.currentDifficulty.slice(1)}`
+        );
     }
 }
 

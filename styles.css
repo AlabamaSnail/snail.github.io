@@ -766,9 +766,10 @@ h1 {
     border: 2px solid var(--accent-color);
     border-radius: 15px;
     padding: 2rem;
-    max-width: 800px;
+    max-width: 500px;
     width: 90%;
     position: relative;
+    margin: auto;
 }
 
 .close-achievements {
@@ -784,176 +785,11 @@ h1 {
     transition: all 0.3s ease;
 }
 
-.achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+.close-achievements:hover {
+    transform: scale(1.1);
 }
 
-.achievement-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.achievement-card.locked {
-    opacity: 0.5;
-}
-
-.achievement-card h3 {
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.achievement-card p {
-    font-size: 0.9rem;
-    margin: 0;
-    opacity: 0.8;
-}
-
-.achievement-progress {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.achievement-progress-bar {
-    height: 100%;
-    background: #4CAF50;
-    transition: width 0.3s ease;
-}
-
-.achievement-notification {
-    position: fixed;
-    bottom: -100px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    border: 2px solid #4CAF50;
-}
-
-.achievement-notification.show {
-    transform: translateY(-120px);
-}
-
-.achievement-notification i {
-    color: #FFD700;
-    font-size: 1.5rem;
-}
-
-.achievement-notification h4 {
-    margin: 0;
-    color: #4CAF50;
-}
-
-.achievement-notification p {
-    margin: 0;
-}
-
-.achievement-popup {
-    position: fixed;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.9);
-    border: 2px solid #4CAF50;
-    border-radius: 10px;
-    padding: 1rem 2rem;
-    color: white;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: top 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.achievement-popup.show {
-    top: 20px;
-}
-
-.achievement-popup .icon {
-    color: #FFD700;
-    font-size: 2rem;
-}
-
-.achievement-popup .content {
-    display: flex;
-    flex-direction: column;
-}
-
-.achievement-popup .title {
-    font-size: 1.2rem;
-    color: #4CAF50;
-    margin: 0;
-}
-
-.achievement-popup .description {
-    font-size: 0.9rem;
-    margin: 0;
-}
-
-.achievement-progress-animation {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    margin-top: 0.5rem;
-    overflow: hidden;
-    position: relative;
-}
-
-.achievement-progress-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: #4CAF50;
-    width: 0;
-    transition: width 1s ease-in-out;
-}
-
-/* Add category headers in achievements panel */
-.achievement-category {
-    width: 100%;
-    grid-column: 1 / -1;
-    margin-top: 1rem;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: #4CAF50;
-}
-
-.achievements-container {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    border: 2px solid var(--accent-color);
-}
-
-.achievements-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-/* Update achievement card styles for the dedicated page */
+/* Update the achievement card styles */
 .achievement-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -963,17 +799,78 @@ h1 {
     gap: 1rem;
     border: 2px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .achievement-card:hover {
     transform: translateY(-5px);
     border-color: #4CAF50;
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+}
+
+/* Add a pseudo-element for the glow effect */
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(76, 175, 80, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 13px;
+}
+
+.achievement-card:hover::before {
+    opacity: 1;
 }
 
 .achievement-card.locked {
     opacity: 0.7;
     filter: grayscale(0.5);
+}
+
+/* Update achievement grid container */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Category headers - make them span full width */
+.achievement-category {
+    grid-column: 1 / -1; /* Make category span all columns */
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: #4CAF50;
+}
+
+/* Update achievements container */
+.achievements-container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 2px solid var(--accent-color);
+    position: relative;
+    z-index: 1;
+}
+
+.achievements-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .achievement-card .icon {
@@ -999,4 +896,234 @@ h1 {
     text-align: center;
     font-size: 0.9rem;
     color: #4CAF50;
+}
+
+.reset-achievements {
+    background: rgba(255, 99, 71, 0.2);
+    border-color: rgba(255, 99, 71, 0.5);
+    margin-top: 1rem;
+}
+
+.reset-achievements:hover {
+    background: rgba(255, 99, 71, 0.3);
+}
+
+/* Update coin particles container */
+.coin-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    pointer-events: none; /* Prevent interaction with particles */
+    opacity: 0; /* Hide the container dot */
+}
+
+/* Achievement notification popup (the small one) */
+.achievement-notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 10000; /* Ensure it's above other elements */
+    transition: top 0.3s ease-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: auto;
+    max-width: 300px; /* Limit width */
+}
+
+.achievement-notification.show {
+    top: 20px;
+}
+
+/* Keep these styles separate from the achievements page overlay */
+.achievement-notification .icon {
+    color: #4CAF50;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.achievement-notification .content {
+    text-align: left;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.achievement-notification .title {
+    font-size: 0.9rem;
+    color: #4CAF50;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.achievement-notification .description {
+    font-size: 0.8rem;
+    margin: 0.1rem 0 0 0;
+    color: white;
+    opacity: 0.9;
+}
+
+.coin-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: #FFD700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1000;
+    border: 2px solid #FFD700;
+}
+
+.coin-popup, .result-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.coin-popup.show, .result-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.coin-popup-content, .result-popup-content {
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    border: 2px solid #FFD700;
+}
+
+.coin-popup.show .coin-popup-content,
+.result-popup.show .result-popup-content {
+    transform: translateY(0);
+}
+
+.coin-amount {
+    position: relative;
+    font-size: 2.5rem;
+    color: #FFD700;
+    margin: 1.5rem 0;
+    animation: coinPulse 1s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.coin-sprite {
+    width: 40px;
+    height: 40px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: coinSpin 1s infinite linear;
+    position: relative;
+}
+
+.coin-sprite::before {
+    content: '$';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #B8860B;
+    font-weight: bold;
+}
+
+.coin-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: particleBurst 1s ease-out forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes coinSpin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance)) scale(0);
+        opacity: 0;
+    }
+}
+
+.result-popup-content.win { border-color: #4CAF50; }
+.result-popup-content.loss { border-color: #f44336; }
+.result-popup-content.draw { border-color: #FFC107; }
+
+.continue-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.continue-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+@keyframes coinPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Enhanced coin animations */
+.coin-popup-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.result-popup-content .coin-reward {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 2rem;
+    color: #FFD700;
+    margin: 1rem 0;
+    animation: coinPulse 1s ease infinite;
+}
+
+.result-popup-content .coin-reward i {
+    animation: coinSpin 1s infinite linear;
 }

@@ -9,6 +9,12 @@ class AchievementsManager {
         if (window.location.pathname.includes('achievements.html')) {
             this.updateDisplay();
         }
+
+        // Add reset button handler
+        const resetButton = document.querySelector('.reset-achievements');
+        if (resetButton) {
+            resetButton.addEventListener('click', () => this.resetAchievements());
+        }
     }
 
     initializeAchievements() {
@@ -53,6 +59,39 @@ class AchievementsManager {
                 category: 'Games',
                 progress: 0,
                 target: 6,  // Number of games
+                unlocked: false
+            },
+            // Coin achievements
+            'coin_collector': {
+                name: 'Coin Collector',
+                description: 'Earn your first 100 coins',
+                category: 'Economy',
+                progress: 0,
+                target: 100,
+                unlocked: false
+            },
+            'high_roller': {
+                name: 'High Roller',
+                description: 'Earn 1000 coins total',
+                category: 'Economy',
+                progress: 0,
+                target: 1000,
+                unlocked: false
+            },
+            'jackpot': {
+                name: 'Jackpot!',
+                description: 'Win 100 coins in a single game',
+                category: 'Economy',
+                progress: 0,
+                target: 1,
+                unlocked: false
+            },
+            'slots_master': {
+                name: 'Slots Master',
+                description: 'Win the maximum payout in slots',
+                category: 'Economy',
+                progress: 0,
+                target: 1,
                 unlocked: false
             }
         };
@@ -109,44 +148,7 @@ class AchievementsManager {
             achievement.unlocked = achievement.progress >= achievement.target;
             this.saveProgress();
             this.updateDisplay();
-            
-            if (achievement.unlocked) {
-                this.showUnlockNotification(achievement);
-            }
         }
-    }
-
-    showUnlockNotification(achievement) {
-        // Create popup element
-        const popup = document.createElement('div');
-        popup.className = 'achievement-popup';
-        popup.innerHTML = `
-            <div class="icon">
-                <i class="fas fa-trophy"></i>
-            </div>
-            <div class="content">
-                <h4 class="title">Achievement Unlocked!</h4>
-                <p class="description">${achievement.name}</p>
-                <div class="achievement-progress-animation">
-                    <div class="achievement-progress-bar"></div>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(popup);
-
-        // Trigger animations
-        setTimeout(() => {
-            popup.classList.add('show');
-            const progressBar = popup.querySelector('.achievement-progress-bar');
-            progressBar.style.width = '100%';
-        }, 100);
-
-        // Remove popup after animation
-        setTimeout(() => {
-            popup.classList.remove('show');
-            setTimeout(() => popup.remove(), 500);
-        }, 3000);
     }
 
     updateDisplay() {
@@ -191,6 +193,15 @@ class AchievementsManager {
 
                 grid.appendChild(card);
             });
+        }
+    }
+
+    resetAchievements() {
+        if (confirm('Are you sure you want to reset all achievements? This cannot be undone.')) {
+            localStorage.removeItem('gameAchievements');
+            this.initializeAchievements();
+            this.updateDisplay();
+            alert('Achievements have been reset!');
         }
     }
 }

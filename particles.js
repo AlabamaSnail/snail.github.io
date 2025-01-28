@@ -50,7 +50,7 @@ window.addEventListener('mousemove', (event) => {
 
 // Create particles
 const particles = [];
-const particleCount = 100;
+const particleCount = 250;
 
 for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());

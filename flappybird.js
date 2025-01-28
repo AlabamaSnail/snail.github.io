@@ -14,7 +14,7 @@ class FlappyBird {
         this.pipeSpawnInterval = 1500;
         this.gameSpeed = 3;
 
-        // Load high score
+        // Load high score from localStorage
         this.highScore = parseInt(localStorage.getItem('flappyHighScore')) || 0;
         this.highScoreElement.textContent = this.highScore;
 
@@ -282,15 +282,27 @@ class FlappyBird {
 
     gameOver() {
         this.gameActive = false;
+        const coinsEarned = Math.floor(this.score / 5);
+        
+        // Update high score if current score is higher
         if (this.score > this.highScore) {
             this.highScore = this.score;
             this.highScoreElement.textContent = this.highScore;
             localStorage.setItem('flappyHighScore', this.highScore);
         }
         
+        // Show coin popup first
+        window.coins.showGameResult(
+            'Game Over!',
+            this.score,
+            coinsEarned,
+            `Coins earned: 1 per 5 points\nHigh Score: ${this.highScore}`
+        );
+
+        // Show restart message in game overlay
         this.overlay.classList.remove('hidden');
-        this.overlay.querySelector('.message').textContent = 
-            `Game Over! Score: ${this.score}\nPress Space or Click to Restart`;
+        this.overlay.querySelector('.message').textContent = 'Press Space or Click to Start';
+        this.overlay.querySelector('.controls').textContent = 'Space/Click to Jump';
     }
 
     gameLoop() {
