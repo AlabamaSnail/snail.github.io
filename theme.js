@@ -17,6 +17,18 @@ const themes = {
     }
 };
 
+// Add this function to load theme immediately
+function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        const theme = JSON.parse(savedTheme);
+        applyTheme(theme.gradientStart, theme.gradientEnd);
+    }
+}
+
+// Call it immediately before DOM content loaded
+loadSavedTheme();
+
 document.addEventListener('DOMContentLoaded', () => {
     const settingsIcon = document.getElementById('settingsIcon');
     const settingsOverlay = document.getElementById('settingsOverlay');
@@ -41,20 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             settingsOverlay.classList.remove('active');
         }
     });
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        const theme = JSON.parse(savedTheme);
-        applyTheme(theme.gradientStart, theme.gradientEnd);
-        
-        themeButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.theme === theme.name) {
-                btn.classList.add('active');
-            }
-        });
-    }
 
     // Theme button clicks
     themeButtons.forEach(btn => {

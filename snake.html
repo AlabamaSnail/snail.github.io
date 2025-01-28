@@ -152,7 +152,39 @@
         </div>
         <a href="games.html" class="button">Back to Games</a>
     </div>
+    <div class="settings-icon" id="settingsIcon">
+        <img src="Pictures/setting.png" alt="Settings">
+    </div>
+
+    <div class="settings-overlay" id="settingsOverlay">
+        <div class="settings-panel">
+            <button class="close-settings" id="closeSettings">×</button>
+            <h2>Settings</h2>
+            <div class="setting-group">
+                <h3>Theme</h3>
+                <div class="theme-options">
+                    <button class="theme-btn" data-theme="default">Default</button>
+                    <button class="theme-btn" data-theme="blue">Blue</button>
+                    <button class="theme-btn" data-theme="purple">Purple</button>
+                    <button class="theme-btn" data-theme="green">Green</button>
+                    <button class="theme-btn custom-theme">Custom</button>
+                </div>
+                <div class="custom-theme-controls" style="display: none;">
+                    <div class="color-picker">
+                        <label for="primary-color">Primary Color:</label>
+                        <input type="color" id="primary-color" value="#1a1a1a">
+                    </div>
+                    <div class="color-picker">
+                        <label for="secondary-color">Secondary Color:</label>
+                        <input type="color" id="secondary-color" value="#404040">
+                    </div>
+                    <button class="button apply-custom">Apply Custom Theme</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="particles.js"></script>
     <script src="snake.js"></script>
+    <script src="theme.js"></script>
 </body>
 </html>
