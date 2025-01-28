@@ -100,4 +100,34 @@ function saveTheme(name, gradientStart, gradientEnd) {
         gradientEnd
     };
     localStorage.setItem('theme', JSON.stringify(theme));
-} 
+}
+
+// Add this to your existing theme.js file
+document.getElementById('submitBug').addEventListener('click', function() {
+    const game = document.getElementById('bugGameSelect').value;
+    const description = document.getElementById('bugDescription').value;
+    const message = document.getElementById('bugSubmitMessage');
+
+    if (!game || !description) {
+        message.textContent = 'Please fill out all fields';
+        message.className = 'bug-message error';
+        return;
+    }
+
+    // Here you would typically send this to a server
+    // For now, we'll just create a mailto link
+    const subject = `Bug Report: ${game}`;
+    const body = `Game/Page: ${game}%0D%0A%0D%0ADescription: ${description}`;
+    window.location.href = `mailto:Austinjr2006@gmail.com?subject=${subject}&body=${body}`;
+
+    // Clear form and show success message
+    document.getElementById('bugGameSelect').value = '';
+    document.getElementById('bugDescription').value = '';
+    message.textContent = 'Bug report sent!';
+    message.className = 'bug-message success';
+
+    // Clear message after 3 seconds
+    setTimeout(() => {
+        message.style.display = 'none';
+    }, 3000);
+}); 

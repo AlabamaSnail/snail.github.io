@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Austin Reynolds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <div class="content">
+        <div class="nav-bar">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="games.html" class="nav-link">Games</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="achievements.html" class="nav-link active">
+                    <i class="fas fa-trophy"></i>
+                    Achievements
+                </a>
+            </div>
+        </div>
+
+        <h1>Achievements</h1>
+        
+        <div class="achievements-container">
+            <div class="achievements-content" id="achievementsGrid">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-icon" id="settingsIcon">
+        <img src="Pictures/setting.png" alt="Settings">
+    </div>
+
+    <div class="settings-overlay" id="settingsOverlay">
+        <!-- Settings panel content -->
+    </div>
+
+    <script src="particles.js"></script>
+    <script src="theme.js"></script>
+    <script src="achievements.js"></script>
+</body>
+</html> 

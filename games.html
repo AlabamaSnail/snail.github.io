@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Austin Reynolds - Games</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,10 +17,18 @@
                 <a href="about.html" class="nav-link">About</a>
                 <a href="games.html" class="nav-link active">Games</a>
                 <a href="projects.html" class="nav-link">Projects</a>
+                <a href="achievements.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    Achievements
+                </a>
             </div>
         </div>
 
         <h1>Games</h1>
+        <button id="achievementsBtn" class="achievements-btn">
+            <i class="fas fa-trophy"></i>
+            Achievements
+        </button>
         <div class="games-grid">
             <a href="tictactoe.html" class="game-card">
                 <div class="game-image-container">
@@ -56,6 +65,13 @@
                 <h2>Sudoku</h2>
                 <p>Classic Sudoku!</p>
             </a>
+            <a href="agario.html" class="game-card">
+                <div class="game-image-container">
+                    <img src="Pictures/agario.png" alt="Agar.io Style Game Preview">
+                </div>
+                <h2>Blob Wars</h2>
+                <p>Totally not agario!</p>
+            </a>
         </div>
     </div>
 
@@ -90,7 +106,19 @@
             </div>
         </div>
     </div>
+
+    <div class="achievements-overlay" id="achievementsOverlay">
+        <div class="achievements-panel">
+            <button class="close-achievements" id="closeAchievements">×</button>
+            <h2>Achievements</h2>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script src="particles.js"></script>
     <script src="theme.js"></script>
+    <script src="achievements.js"></script>
 </body>
 </html>

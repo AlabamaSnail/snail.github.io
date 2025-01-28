@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob Wars - Austin Reynolds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="agario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="games.html" class="nav-link">Games</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="achievements.html" class="nav-link">
+                <i class="fas fa-trophy"></i>
+                Achievements
+            </a>
+        </div>
+    </div>
+    <div class="game-overlay">
+        <div class="mass-display">Mass: <span id="mass">0</span></div>
+        <div class="leaderboard">
+            <h3>Top Players</h3>
+            <ol id="leaderboard"></ol>
+        </div>
+        <div class="game-controls">
+            <button id="respawnBtn" class="control-btn">Respawn</button>
+            <button id="toggleAI" class="control-btn">Toggle AI</button>
+            <a href="games.html" class="control-btn">Back</a>
+        </div>
+    </div>
+    <canvas id="gameBoard"></canvas>
+    <script src="particles.js"></script>
+    <script src="theme.js"></script>
+    <script src="agario.js"></script>
+</body>
+</html> 

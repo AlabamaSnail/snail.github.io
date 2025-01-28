@@ -32,25 +32,53 @@ class TicTacToe {
         this.resetButton.addEventListener('click', () => this.resetGame());
     }
 
+    updateAchievements(result) {
+        if (result === 'Win') {
+            try {
+                const difficulty = document.querySelector('.diff-btn.selected').dataset.difficulty;
+                console.log('Current difficulty:', difficulty); // Debug log
+                
+                // Make sure achievements exists
+                if (window.achievements) {
+                    switch(difficulty) {
+                        case 'easy':
+                            window.achievements.updateProgress('ttt_easy', 1);
+                            break;
+                        case 'medium':
+                            window.achievements.updateProgress('ttt_medium', 1);
+                            break;
+                        case 'hard':
+                            window.achievements.updateProgress('ttt_hard', 1);
+                            break;
+                    }
+                } else {
+                    console.error('Achievements system not initialized');
+                }
+            } catch (error) {
+                console.error('Achievement update failed:', error);
+            }
+        }
+    }
+
     endGame(result) {
         this.gameActive = false;
         
         // Add game to history
         this.addGameToHistory(result, this.difficulty);
         
-        // Show result
-        setTimeout(() => {
-            if (result === 'Win') {
-                alert('You win!');
-            } else if (result === 'Loss') {
-                alert('AI wins!');
-            } else {
-                alert("It's a draw!");
-            }
-            
-            // Auto-reset after a short delay
-            setTimeout(() => this.resetGame(), 500);
-        }, 100);
+        // Update achievements
+        this.updateAchievements(result);
+        
+        if (result === 'Win') {
+            alert('You win!');
+        } else if (result === 'Loss') {
+            alert('AI wins!');
+        } else {
+            alert("It's a draw!");
+        }
+        
+        // Reset after a short delay
+        setTimeout(() => this.resetGame(), 500);
     }
 
     makeMove(cell) {
@@ -59,24 +87,32 @@ class TicTacToe {
             this.board[index] = this.currentPlayer;
             cell.classList.add(this.currentPlayer.toLowerCase());
             
-            if (this.checkWin()) {
-                this.endGame('Win');
-                return;
-            }
-            
-            if (this.checkDraw()) {
-                this.endGame('Draw');
-                return;
-            }
-            
-            this.currentPlayer = 'O';
-            if (this.gameActive) {
-                setTimeout(() => this.makeAIMove(), 500);
-            }
+            // Add small delay to show the final move before showing result
+            setTimeout(() => {
+                const winner = this.checkWin();
+                if (winner) {
+                    this.gameActive = false;
+                    this.endGame(winner === 'X' ? 'Win' : 'Loss');
+                    return;
+                }
+                
+                if (this.checkDraw()) {
+                    this.gameActive = false;
+                    this.endGame('Draw');
+                    return;
+                }
+                
+                this.currentPlayer = 'O';
+                if (this.gameActive) {
+                    setTimeout(() => this.makeAIMove(), 500);
+                }
+            }, 100);
         }
     }
 
     makeAIMove() {
+        if (!this.gameActive) return;
+
         let move;
         switch(this.difficulty) {
             case 'easy':
@@ -89,24 +125,30 @@ class TicTacToe {
                 move = this.getBestMove();
                 break;
             default:
-                move = this.getRandomMove(); // Default to easy
+                move = this.getRandomMove();
         }
 
-        if (move !== null && this.gameActive) {
+        if (move !== null) {
             this.board[move] = 'O';
             document.querySelector(`[data-index="${move}"]`).classList.add('o');
             
-            if (this.checkWin()) {
-                this.endGame('Loss');
-                return;
-            }
-            
-            if (this.checkDraw()) {
-                this.endGame('Draw');
-                return;
-            }
-            
-            this.currentPlayer = 'X';
+            // Add small delay to show the final move before showing result
+            setTimeout(() => {
+                const winner = this.checkWin();
+                if (winner) {
+                    this.gameActive = false;
+                    this.endGame(winner === 'X' ? 'Win' : 'Loss');
+                    return;
+                }
+                
+                if (this.checkDraw()) {
+                    this.gameActive = false;
+                    this.endGame('Draw');
+                    return;
+                }
+                
+                this.currentPlayer = 'X';
+            }, 100);
         }
     }
 
@@ -139,7 +181,10 @@ class TicTacToe {
     }
 
     minimax(board, depth, isMaximizing) {
-        if (this.checkWin()) return isMaximizing ? -1 : 1;
+        // Check win/draw conditions first
+        const result = this.checkWinForMinimax(board);
+        if (result === 'O') return 1;
+        if (result === 'X') return -1;
         if (this.checkDraw()) return 0;
 
         if (isMaximizing) {
@@ -165,19 +210,39 @@ class TicTacToe {
         }
     }
 
-    checkWin() {
+    // Add a separate win check for minimax to avoid achievement triggers
+    checkWinForMinimax(board) {
         const winPatterns = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-            [0, 4, 8], [2, 4, 6] // Diagonals
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
         ];
 
-        return winPatterns.some(pattern => {
+        for (let pattern of winPatterns) {
             const [a, b, c] = pattern;
-            return this.board[a] && 
-                   this.board[a] === this.board[b] && 
-                   this.board[a] === this.board[c];
-        });
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                return board[a];
+            }
+        }
+        return null;
+    }
+
+    checkWin() {
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        for (let pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (this.board[a] && 
+                this.board[a] === this.board[b] && 
+                this.board[a] === this.board[c]) {
+                return this.board[a];
+            }
+        }
+        return null;
     }
 
     checkDraw() {
