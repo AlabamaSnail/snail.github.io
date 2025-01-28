@@ -1,5 +1,3 @@
-import AdminAuth from './adminAuth.js';
-
 const themes = {
     default: {
         gradientStart: '#000000',
@@ -88,8 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeButtons.forEach(b => b.classList.remove('active'));
         document.querySelector('.custom-theme').classList.add('active');
     });
-
-    new AdminPanel();
 });
 
 function applyTheme(gradientStart, gradientEnd) {

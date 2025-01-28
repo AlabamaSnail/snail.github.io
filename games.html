@@ -25,10 +25,6 @@
         </div>
 
         <h1>Games</h1>
-        <button id="achievementsBtn" class="achievements-btn">
-            <i class="fas fa-trophy"></i>
-            Achievements
-        </button>
         <div class="games-grid">
             <a href="tictactoe.html" class="game-card">
                 <div class="game-image-container">
@@ -86,13 +82,6 @@
                 <h2>Plinko</h2>
                 <p>Drop chips and watch them bounce!</p>
             </a>
-            <a href="platformer.html" class="game-card">
-                <div class="game-image-container">
-                    <img src="Pictures/platformer.png" alt="Pixel Adventure Preview">
-                </div>
-                <h2>Pixel Adventure</h2>
-                <p>20 levels of platforming fun!</p>
-            </a>
             <a href="levelEditor.html" class="game-card admin-only" style="display: none;">
                 <div class="game-image-container">
                     <img src="Pictures/editor.png" alt="Level Editor">
@@ -135,16 +124,6 @@
         </div>
     </div>
 
-    <div class="achievements-overlay" id="achievementsOverlay">
-        <div class="achievements-panel">
-            <button class="close-achievements" id="closeAchievements">×</button>
-            <h2>Achievements</h2>
-            <div class="achievements-grid" id="achievementsGrid">
-                <!-- Achievements will be populated by JavaScript -->
-            </div>
-        </div>
-    </div>
-
     <script src="particles.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -155,6 +134,5 @@
     <script type="module" src="firebaseConfig.js"></script>
     <script type="module" src="adminAuth.js"></script>
     <script src="theme.js"></script>
-    <script src="achievements.js"></script>
 </body>
 </html>
