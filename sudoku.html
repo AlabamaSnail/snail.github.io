@@ -3,37 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper - Austin Reynolds</title>
+    <title>Sudoku - Austin Reynolds</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="minesweeper.css">
+    <link rel="stylesheet" href="sudoku.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="particleCanvas"></canvas>
     <div class="content game-content">
-        <h1>Minesweeper</h1>
-        <div class="difficulty-selector">
-            <button class="diff-btn" data-difficulty="beginner">Beginner</button>
-            <button class="diff-btn" data-difficulty="intermediate">Intermediate</button>
-            <button class="diff-btn" data-difficulty="expert">Expert</button>
-            <button class="diff-btn" data-difficulty="custom">Custom</button>
-        </div>
-
+        <h1>Sudoku</h1>
+        
         <div class="game-stats">
-            <div class="mine-count">💣 <span id="mineCount">0</span></div>
-            <div class="timer">⏱️ <span id="timer">0</span></div>
-            <button class="reset-btn">🔄 Reset</button>
+            <div class="difficulty-selector">
+                <button class="diff-btn" data-difficulty="easy">Easy</button>
+                <button class="diff-btn" data-difficulty="medium">Medium</button>
+                <button class="diff-btn" data-difficulty="hard">Hard</button>
+            </div>
+            <div class="timer">⏱️ <span id="timer">0:00</span></div>
         </div>
 
         <div class="game-container">
-            <div id="minesweeperBoard" class="board"></div>
+            <div id="sudokuBoard" class="board"></div>
+            <div class="number-pad">
+                <button class="num-btn">1</button>
+                <button class="num-btn">2</button>
+                <button class="num-btn">3</button>
+                <button class="num-btn">4</button>
+                <button class="num-btn">5</button>
+                <button class="num-btn">6</button>
+                <button class="num-btn">7</button>
+                <button class="num-btn">8</button>
+                <button class="num-btn">9</button>
+                <button class="num-btn erase">⌫</button>
+            </div>
         </div>
 
-        <div class="custom-settings" style="display: none;">
-            <input type="number" id="customWidth" placeholder="Width (8-50)">
-            <input type="number" id="customHeight" placeholder="Height (8-50)">
-            <input type="number" id="customMines" placeholder="Mines">
-            <button id="applyCustom">Apply</button>
+        <div class="game-controls">
+            <button class="control-btn" id="newGame">New Game</button>
+            <button class="control-btn" id="checkSolution">Check Solution</button>
+            <button class="control-btn" id="showHint">Hint</button>
         </div>
 
         <a href="games.html" class="button back-btn">Back to Games</a>
@@ -72,7 +80,7 @@
     </div>
 
     <script src="particles.js"></script>
-    <script src="minesweeper.js"></script>
+    <script src="sudoku.js"></script>
     <script src="theme.js"></script>
 </body>
 </html> 
